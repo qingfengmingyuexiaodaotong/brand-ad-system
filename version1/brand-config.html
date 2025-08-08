@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>品牌配置 - 品牌广告营销系统</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-ad"></i>
+                    <span>品牌广告系统</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>品牌广告</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-list"></i>品牌列表</a></li>
+                        <li class="active"><a href="brand-config.html"><i class="fas fa-cog"></i>品牌配置</a></li>
+                        <li><a href="ad-list.html"><i class="fas fa-ad"></i>广告列表</a></li>
+                        <li><a href="ad-config.html"><i class="fas fa-edit"></i>广告配置</a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3>数据监控</h3>
+                    <ul>
+                        <li><a href="#dashboard"><i class="fas fa-chart-line"></i>数据概览</a></li>
+                        <li><a href="#reports"><i class="fas fa-file-alt"></i>报表统计</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航 -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1>品牌配置</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span>管理员</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 配置表单 -->
+            <div class="content-wrapper">
+                <div class="form-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">品牌基本信息</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="brand-config-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">品牌名称</label>
+                                        <input type="text" class="form-input" id="brand-name" 
+                                               placeholder="请输入品牌名称（最多10个汉字）" maxlength="10" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">品牌行业</label>
+                                        <div class="select-wrapper">
+                                            <select class="form-select" id="brand-industry" required>
+                                                <option value="">请选择行业</option>
+                                                <option value="tech">科技</option>
+                                                <option value="fashion">时尚</option>
+                                                <option value="food">餐饮</option>
+                                                <option value="auto">汽车</option>
+                                                <option value="finance">金融</option>
+                                                <option value="education">教育</option>
+                                                <option value="health">健康</option>
+                                                <option value="travel">旅游</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">曝光频控</label>
+                                        <div class="select-wrapper">
+                                            <select class="form-select" id="exposure-control" required>
+                                                <option value="">请选择曝光频控</option>
+                                                <option value="1">1次/天/用户</option>
+                                                <option value="3">3次/天/用户</option>
+                                                <option value="5">5次/天/用户</option>
+                                                <option value="10">10次/天/用户</option>
+                                                <option value="unlimited">不限</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">品牌Logo</label>
+                                        <div class="upload-area" id="logo-upload">
+                                            <div class="upload-icon">
+                                                <i class="fas fa-cloud-upload-alt"></i>
+                                            </div>
+                                            <div class="upload-text">点击上传品牌Logo</div>
+                                            <div class="upload-hint">支持PNG、GIF、WebP、SVG格式，尺寸500*500px，大小≤500KB</div>
+                                            <input type="file" id="logo-file" accept="image/*" style="display: none;">
+                                        </div>
+                                        <div class="upload-preview" id="logo-preview" style="display: none;">
+                                            <img id="logo-preview-img" src="" alt="品牌Logo预览">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">品牌描述</label>
+                                    <textarea class="form-textarea" id="brand-description" 
+                                              placeholder="请输入品牌描述信息"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- 效果预览 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">效果预览</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="ad-preview" id="ad-preview">
+                                <div class="preview-header">
+                                    <img src="https://via.placeholder.com/40x40/3b82f6/ffffff?text=Logo" 
+                                         alt="品牌Logo" class="preview-logo" id="preview-logo">
+                                    <div>
+                                        <div class="preview-brand" id="preview-brand">品牌名称</div>
+                                        <div class="preview-industry" id="preview-industry">行业分类</div>
+                                    </div>
+                                </div>
+                                <div class="preview-content">
+                                    <div class="preview-title" id="preview-title">广告标题</div>
+                                    <div class="preview-description" id="preview-description">广告描述信息</div>
+                                    <div class="preview-media">
+                                        <img src="https://via.placeholder.com/300x200/3b82f6/ffffff?text=Ad+Preview" 
+                                             alt="广告预览" id="preview-media">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn btn-secondary" onclick="cancelConfig()">
+                        <i class="fas fa-times"></i>取消
+                    </button>
+                    <button class="btn btn-primary" onclick="saveBrand()">
+                        <i class="fas fa-save"></i>确认创建
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/brand-config.js"></script>
+</body>
+</html> 

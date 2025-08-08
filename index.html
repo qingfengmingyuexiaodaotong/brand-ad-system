@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>品牌广告营销系统 - 产品原型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        
+        .prototype-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .prototype-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .prototype-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+        
+        .prototype-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .prototype-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .prototype-desc {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .admin-icon {
+            color: #2c3e50;
+        }
+        
+        .dashboard-icon {
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>品牌广告营销系统</h1>
+        <p class="subtitle">产品原型展示 - 选择您喜欢的界面风格</p>
+        
+        <div class="prototype-grid">
+            <a href="version1/index.html" class="prototype-card">
+                <span class="prototype-icon admin-icon">🏢</span>
+                <div class="prototype-title">管理后台风格</div>
+                <div class="prototype-desc">
+                    传统企业级管理界面<br>
+                    功能完整，操作直观<br>
+                    适合后台管理人员使用
+                </div>
+            </a>
+            
+            <a href="version2/index.html" class="prototype-card">
+                <span class="prototype-icon dashboard-icon">📊</span>
+                <div class="prototype-title">现代化仪表板</div>
+                <div class="prototype-desc">
+                    现代化数据可视化界面<br>
+                    图表丰富，交互友好<br>
+                    适合数据分析师使用
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html> 

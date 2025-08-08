@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告配置 - 品牌广告营销系统</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-ad"></i>
+                    <span>品牌广告系统</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>品牌广告</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-list"></i>品牌列表</a></li>
+                        <li><a href="brand-config.html"><i class="fas fa-cog"></i>品牌配置</a></li>
+                        <li><a href="ad-list.html"><i class="fas fa-ad"></i>广告列表</a></li>
+                        <li class="active"><a href="ad-config.html"><i class="fas fa-edit"></i>广告配置</a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3>数据监控</h3>
+                    <ul>
+                        <li><a href="#dashboard"><i class="fas fa-chart-line"></i>数据概览</a></li>
+                        <li><a href="#reports"><i class="fas fa-file-alt"></i>报表统计</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航 -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1>广告配置</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span>管理员</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 配置表单 -->
+            <div class="content-wrapper">
+                <div class="form-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">基础信息</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="ad-config-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">品牌名称</label>
+                                        <div class="select-wrapper">
+                                            <select class="form-select" id="brand-select" required>
+                                                <option value="">请选择品牌</option>
+                                                <option value="1">Nike运动</option>
+                                                <option value="2">Apple科技</option>
+                                                <option value="3">Starbucks咖啡</option>
+                                                <option value="4">Tesla汽车</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">品牌行业</label>
+                                        <input type="text" class="form-input" id="brand-industry" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">广告标题</label>
+                                        <input type="text" class="form-input" id="ad-title" 
+                                               placeholder="请输入广告标题（最多10个汉字）" maxlength="10" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">广告文案</label>
+                                        <input type="text" class="form-input" id="ad-description" 
+                                               placeholder="请输入广告文案（最多10个汉字）" maxlength="10" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">活动</label>
+                                        <div class="select-wrapper">
+                                            <select class="form-select" id="activity-select" required>
+                                                <option value="">请选择</option>
+                                                <option value="yes">是</option>
+                                                <option value="no">否</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">资源位置</label>
+                                        <div class="select-wrapper">
+                                            <select class="form-select" id="position-select" required>
+                                                <option value="">请选择位置</option>
+                                                <option value="信息流">信息流</option>
+                                                <option value="开屏广告">开屏广告</option>
+                                                <option value="详情页">详情页</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">投放配置</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">曝光频控</label>
+                                    <div class="select-wrapper">
+                                        <select class="form-select" id="exposure-control" required>
+                                            <option value="">请选择曝光频控</option>
+                                            <option value="5">5次/天/用户</option>
+                                            <option value="8">8次/天/用户</option>
+                                            <option value="10">10次/天/用户</option>
+                                            <option value="unlimited">不限</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">同行频控</label>
+                                    <div class="select-wrapper">
+                                        <select class="form-select" id="peer-control" required>
+                                            <option value="">请选择同行频控</option>
+                                            <option value="3">3个广告位</option>
+                                            <option value="5">5个广告位</option>
+                                            <option value="10">10个广告位</option>
+                                            <option value="unlimited">不限</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">投放开始时间</label>
+                                    <input type="datetime-local" class="form-input" id="start-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">投放结束时间</label>
+                                    <input type="datetime-local" class="form-input" id="end-date" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">地域定向</label>
+                                <div class="region-selector">
+                                    <div class="region-search">
+                                        <input type="text" placeholder="请输入省市名称搜索" id="region-search">
+                                    </div>
+                                    <div class="region-options">
+                                        <div class="region-group">
+                                            <h5>省份</h5>
+                                            <div class="region-checkboxes">
+                                                <label class="region-checkbox">
+                                                    <input type="checkbox" value="全国"> 全国
+                                                </label>
+                                                <label class="region-checkbox">
+                                                    <input type="checkbox" value="北京"> 北京
+                                                </label>
+                                                <label class="region-checkbox">
+                                                    <input type="checkbox" value="上海"> 上海
+                                                </label>
+                                                <label class="region-checkbox">
+                                                    <input type="checkbox" value="广州"> 广州
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="region-group">
+                                            <h5>城市</h5>
+                                            <div class="region-checkboxes">
+                                                <label class="region-checkbox">
+                                                    <input type="checkbox" value="北京"> 北京
+                                                </label>
+                                                <label class="region-checkbox">
+                                                    <input type="checkbox" value="上海"> 上海
+                                                </label>
+                                                <label class="region-checkbox">
+                                                    <input type="checkbox" value="广州"> 广州
+                                                </label>
+                                                <label class="region-checkbox">
+                                                    <input type="checkbox" value="深圳"> 深圳
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">优先级</label>
+                                    <div class="priority-selector" id="priority-selector">
+                                        <div class="priority-option" data-value="1">1级</div>
+                                        <div class="priority-option" data-value="2">2级</div>
+                                        <div class="priority-option" data-value="3">3级</div>
+                                        <div class="priority-option" data-value="4">4级</div>
+                                        <div class="priority-option" data-value="5">5级</div>
+                                        <div class="priority-option" data-value="6">6级</div>
+                                        <div class="priority-option" data-value="7">7级</div>
+                                        <div class="priority-option" data-value="8">8级</div>
+                                        <div class="priority-option" data-value="9">9级</div>
+                                        <div class="priority-option" data-value="10">10级</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">设备类型</label>
+                                    <div class="select-wrapper">
+                                        <select class="form-select" id="device-type" required>
+                                            <option value="">请选择设备类型</option>
+                                            <option value="iOS">iOS</option>
+                                            <option value="Android">Android</option>
+                                            <option value="H5">H5</option>
+                                            <option value="不限">不限</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">广告类型</label>
+                                    <div class="select-wrapper">
+                                        <select class="form-select" id="ad-type" required>
+                                            <option value="">请选择广告类型</option>
+                                            <option value="image">图片</option>
+                                            <option value="video">视频</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">跳转链接</label>
+                                    <input type="url" class="form-input" id="ad-link" 
+                                           placeholder="请输入跳转链接（最多200个字符）" maxlength="200" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">广告素材</label>
+                                <div class="upload-area" id="material-upload">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <div class="upload-text">点击上传广告素材</div>
+                                    <div class="upload-hint">支持图片和视频格式，图片建议尺寸300x200px，视频建议时长15-30秒</div>
+                                    <input type="file" id="material-file" accept="image/*,video/*" style="display: none;">
+                                </div>
+                                <div class="upload-preview" id="material-preview" style="display: none;">
+                                    <div id="material-preview-content"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 效果预览 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">效果预览</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="ad-preview" id="ad-preview">
+                                <div class="preview-header">
+                                    <img src="https://via.placeholder.com/40x40/3b82f6/ffffff?text=Logo" 
+                                         alt="品牌Logo" class="preview-logo" id="preview-logo">
+                                    <div>
+                                        <div class="preview-brand" id="preview-brand">品牌名称</div>
+                                        <div class="preview-industry" id="preview-industry">行业分类</div>
+                                    </div>
+                                </div>
+                                <div class="preview-content">
+                                    <div class="preview-title" id="preview-title">广告标题</div>
+                                    <div class="preview-description" id="preview-description">广告描述信息</div>
+                                    <div class="preview-media">
+                                        <img src="https://via.placeholder.com/300x200/3b82f6/ffffff?text=Ad+Preview" 
+                                             alt="广告预览" id="preview-media">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn btn-secondary" onclick="cancelConfig()">
+                        <i class="fas fa-times"></i>取消
+                    </button>
+                    <button class="btn btn-primary" onclick="saveAd()">
+                        <i class="fas fa-save"></i>确认创建
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/ad-config.js"></script>
+</body>
+</html> 

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广告列表 - 品牌广告营销系统</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-ad"></i>
+                    <span>品牌广告系统</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>品牌广告</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-list"></i>品牌列表</a></li>
+                        <li><a href="brand-config.html"><i class="fas fa-cog"></i>品牌配置</a></li>
+                        <li class="active"><a href="ad-list.html"><i class="fas fa-ad"></i>广告列表</a></li>
+                        <li><a href="ad-config.html"><i class="fas fa-edit"></i>广告配置</a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3>数据监控</h3>
+                    <ul>
+                        <li><a href="#dashboard"><i class="fas fa-chart-line"></i>数据概览</a></li>
+                        <li><a href="#reports"><i class="fas fa-file-alt"></i>报表统计</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航 -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1>广告列表</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span>管理员</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 筛选区域 -->
+            <div class="filter-section">
+                <div class="filter-row">
+                    <div class="filter-item">
+                        <label>状态</label>
+                        <select id="status-filter">
+                            <option value="">全部</option>
+                            <option value="online">在线</option>
+                            <option value="offline">下线</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label>品牌名称</label>
+                        <input type="text" id="brand-filter" placeholder="请输入品牌名称">
+                    </div>
+                    <div class="filter-item">
+                        <label>广告类型</label>
+                        <select id="type-filter">
+                            <option value="">全部类型</option>
+                            <option value="image">图片</option>
+                            <option value="video">视频</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label>活动</label>
+                        <select id="activity-filter">
+                            <option value="">全部</option>
+                            <option value="yes">是</option>
+                            <option value="no">否</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label>设备类型</label>
+                        <select id="device-filter">
+                            <option value="">全部设备</option>
+                            <option value="iOS">iOS</option>
+                            <option value="Android">Android</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label>位置</label>
+                        <select id="position-filter">
+                            <option value="">全部位置</option>
+                            <option value="信息流">信息流</option>
+                            <option value="开屏广告">开屏广告</option>
+                            <option value="详情页">详情页</option>
+                        </select>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="btn btn-primary" onclick="createAd()">
+                            <i class="fas fa-plus"></i>新建广告
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数据概览卡片 -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>在线广告</h3>
+                        <p class="stat-number">12</p>
+                        <span class="stat-change positive">+2</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>总曝光量</h3>
+                        <p class="stat-number">2,345,678</p>
+                        <span class="stat-change positive">+18.2%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>平均点击率</h3>
+                        <p class="stat-number">4.1%</p>
+                        <span class="stat-change positive">+0.5%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>视频播放时长</h3>
+                        <p class="stat-number">15.2s</p>
+                        <span class="stat-change positive">+2.1s</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 广告列表表格 -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>广告状态</th>
+                            <th>品牌名称</th>
+                            <th>广告类型</th>
+                            <th>活动</th>
+                            <th>设备类型</th>
+                            <th>上线时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ad-table-body">
+                        <!-- 数据将通过JavaScript动态生成 -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <!-- 广告详情抽屉 -->
+        <div class="drawer" id="ad-detail-drawer">
+            <div class="drawer-header">
+                <h3>广告详情</h3>
+                <button class="drawer-close" onclick="closeDrawer()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="drawer-content" id="ad-detail-content">
+                <!-- 详情内容将通过JavaScript动态生成 -->
+            </div>
+        </div>
+
+        <!-- 确认弹窗 -->
+        <div class="modal" id="confirm-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">确认操作</h3>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-message">确定要执行此操作吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeModal()">取消</button>
+                    <button class="btn btn-danger" onclick="confirmAction()">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/ad-list.js"></script>
+</body>
+</html> 

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>品牌广告营销系统 - 现代化版本</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-ad"></i>
+                    <span>品牌广告系统</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>品牌广告</h3>
+                    <ul>
+                        <li class="active"><a href="index.html"><i class="fas fa-list"></i>品牌列表</a></li>
+                        <li><a href="brand-config.html"><i class="fas fa-cog"></i>品牌配置</a></li>
+                        <li><a href="ad-list.html"><i class="fas fa-ad"></i>广告列表</a></li>
+                        <li><a href="ad-config.html"><i class="fas fa-edit"></i>广告配置</a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3>数据监控</h3>
+                    <ul>
+                        <li><a href="#dashboard"><i class="fas fa-chart-line"></i>数据概览</a></li>
+                        <li><a href="#reports"><i class="fas fa-file-alt"></i>报表统计</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航 -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1>品牌列表</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span>管理员</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 筛选区域 -->
+            <div class="filter-section">
+                <div class="filter-row">
+                    <div class="filter-item">
+                        <label>状态</label>
+                        <select id="status-filter">
+                            <option value="">全部</option>
+                            <option value="active">可用</option>
+                            <option value="inactive">停用</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label>名称</label>
+                        <input type="text" id="name-filter" placeholder="请输入品牌名称">
+                    </div>
+                    <div class="filter-item">
+                        <label>行业</label>
+                        <select id="industry-filter">
+                            <option value="">全部行业</option>
+                            <option value="tech">科技</option>
+                            <option value="fashion">时尚</option>
+                            <option value="food">餐饮</option>
+                            <option value="auto">汽车</option>
+                        </select>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="btn btn-primary" onclick="createBrand()">
+                            <i class="fas fa-plus"></i>新建品牌
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数据概览卡片 -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>总曝光量</h3>
+                        <p class="stat-number">1,234,567</p>
+                        <span class="stat-change positive">+12.5%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>点击率</h3>
+                        <p class="stat-number">3.2%</p>
+                        <span class="stat-change positive">+0.8%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>参与用户</h3>
+                        <p class="stat-number">89,432</p>
+                        <span class="stat-change positive">+15.3%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>销售额</h3>
+                        <p class="stat-number">¥2.1M</p>
+                        <span class="stat-change positive">+8.7%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 品牌列表表格 -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>品牌状态</th>
+                            <th>品牌名称</th>
+                            <th>品牌行业</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="brand-table-body">
+                        <!-- 数据将通过JavaScript动态生成 -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <!-- 品牌详情抽屉 -->
+        <div class="drawer" id="brand-detail-drawer">
+            <div class="drawer-header">
+                <h3>品牌详情</h3>
+                <button class="drawer-close" onclick="closeDrawer()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="drawer-content" id="brand-detail-content">
+                <!-- 详情内容将通过JavaScript动态生成 -->
+            </div>
+        </div>
+
+        <!-- 确认弹窗 -->
+        <div class="modal" id="confirm-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">确认操作</h3>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-message">确定要执行此操作吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeModal()">取消</button>
+                    <button class="btn btn-danger" onclick="confirmAction()">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

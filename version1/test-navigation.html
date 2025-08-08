@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航测试 - 品牌广告营销系统</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-ad"></i>
+                    <span>品牌广告系统</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>品牌广告</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-list"></i>品牌列表</a></li>
+                        <li><a href="brand-config.html"><i class="fas fa-cog"></i>品牌配置</a></li>
+                        <li><a href="ad-list.html"><i class="fas fa-ad"></i>广告列表</a></li>
+                        <li><a href="ad-config.html"><i class="fas fa-edit"></i>广告配置</a></li>
+                    </ul>
+                </div>
+                <div class="nav-section">
+                    <h3>数据监控</h3>
+                    <ul>
+                        <li><a href="#dashboard"><i class="fas fa-chart-line"></i>数据概览</a></li>
+                        <li><a href="#reports"><i class="fas fa-file-alt"></i>报表统计</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航 -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1>导航测试页面</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span>管理员</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 测试内容 -->
+            <div class="content-wrapper">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">导航功能测试</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>请点击左侧菜单测试导航功能：</p>
+                        <ul>
+                            <li><strong>品牌列表</strong> - 应该跳转到 index.html</li>
+                            <li><strong>品牌配置</strong> - 应该跳转到 brand-config.html</li>
+                            <li><strong>广告列表</strong> - 应该跳转到 ad-list.html</li>
+                            <li><strong>广告配置</strong> - 应该跳转到 ad-config.html</li>
+                            <li><strong>数据概览</strong> - 应该显示提示消息（锚点链接）</li>
+                            <li><strong>报表统计</strong> - 应该显示提示消息（锚点链接）</li>
+                        </ul>
+                        
+                        <div class="test-results" id="test-results">
+                            <h4>测试结果：</h4>
+                            <div id="navigation-log"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            setupNavigationTest();
+        });
+
+        // 设置导航测试
+        function setupNavigationTest() {
+            // 导航事件 - 处理锚点链接和页面跳转
+            document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    const linkText = this.textContent.trim();
+                    
+                    // 记录导航事件
+                    logNavigation(linkText, href);
+                    
+                    // 如果是锚点链接（以#开头），阻止默认行为并处理
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = href.substring(1);
+                        navigateToPage(target);
+                    }
+                    // 如果是页面链接，让浏览器正常跳转
+                    // 不需要阻止默认行为，让浏览器处理页面跳转
+                });
+            });
+        }
+
+        // 记录导航事件
+        function logNavigation(linkText, href) {
+            const logDiv = document.getElementById('navigation-log');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.innerHTML = `
+                <div style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 4px;">
+                    <strong>${timestamp}</strong> - 点击了 "${linkText}" (${href})
+                </div>
+            `;
+            logDiv.appendChild(logEntry);
+        }
+
+        // 导航到页面
+        function navigateToPage(page) {
+            console.log('导航到页面:', page);
+            showToast(`导航到 ${page} 页面`);
+        }
+
+        // 显示提示消息
+        function showToast(message, type = 'info') {
+            // 创建提示元素
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            
+            // 添加样式
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 3000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // 显示动画
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // 自动隐藏
+            setTimeout(() => {
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html> 
